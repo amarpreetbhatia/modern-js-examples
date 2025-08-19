@@ -26,8 +26,8 @@
   },
   "dependencies": {
     "@modern-js/runtime": "2.68.7",
-    "@module-federation/bridge-react": "0.18.0",
-    "@module-federation/modern-js": "0.18.0",
+    "@module-federation/bridge-react": "0.18.3",
+    "@module-federation/modern-js": "0.18.3",
     "react": "~18.2.0",
     "react-dom": "~18.2.0"
   },
