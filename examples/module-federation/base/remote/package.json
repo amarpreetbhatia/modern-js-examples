@@ -6,7 +6,7 @@
     "dev": "modern dev",
     "build": "modern build",
     "start": "modern start",
-    "serve": "modern serve",
+    "serve": "MODERN_MF_AUTO_CORS=true modern serve",
     "new": "modern new",
     "lint": "biome check",
     "lint:fix": "biome check --write",
@@ -26,7 +26,7 @@
   },
   "dependencies": {
     "@modern-js/runtime": "2.68.7",
-    "@module-federation/modern-js": "0.18.0",
+    "@module-federation/modern-js": "0.18.3",
     "react": "~18.2.0",
     "react-dom": "~18.2.0"
   },
