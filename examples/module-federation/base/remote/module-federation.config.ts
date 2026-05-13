@@ -1,16 +1,16 @@
-import { createModuleFederationConfig } from '@module-federation/modern-js';
+import { createModuleFederationConfig } from "@module-federation/modern-js-v3";
 
 export default createModuleFederationConfig({
-  name: 'remote',
+  name: "remote",
   manifest: {
-    filePath: 'static',
+    filePath: "static",
   },
-  filename: 'static/remoteEntry.js',
+  filename: "static/remoteEntry.js",
   exposes: {
-    './Button': './src/components/Button.tsx',
+    "./Button": "./src/components/Button.tsx",
   },
   shared: {
     react: { singleton: true },
-    'react-dom': { singleton: true },
+    "react-dom": { singleton: true },
   },
 });

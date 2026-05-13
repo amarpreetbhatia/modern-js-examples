@@ -1,24 +1,21 @@
-import { appTools, defineConfig } from '@modern-js/app-tools';
-import { withZephyr } from 'zephyr-modernjs-plugin';
+import { appTools, defineConfig } from "@modern-js/app-tools";
+import { withZephyr } from "zephyr-modernjs-plugin";
 
 export default defineConfig({
   output: {
     distPath: {
-      html: './',
+      html: "./",
     },
   },
   html: {
-    outputStructure: 'flat',
+    outputStructure: "flat",
   },
   source: {
-    mainEntryName: 'index',
-  },
-  runtime: {
-    router: true,
+    mainEntryName: "index",
   },
   plugins: [
     appTools({
-      bundler: 'rspack', // Set to 'webpack' to enable webpack
+      bundler: "rspack",
     }),
     withZephyr(),
   ],

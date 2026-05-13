@@ -7,13 +7,11 @@
     "build": "modern build",
     "start": "modern start",
     "serve": "modern serve",
-    "new": "modern new",
     "lint": "biome check",
-    "prepare": "simple-git-hooks",
-    "upgrade": "modern upgrade"
+    "prepare": "simple-git-hooks"
   },
   "engines": {
-    "node": ">=18"
+    "node": ">=20.19.5"
   },
   "lint-staged": {
     "*.{js,ts,cjs,mjs,d.cts,d.mts,jsx,tsx,json,jsonc}": [
@@ -24,21 +22,24 @@
     "pre-commit": "npx lint-staged"
   },
   "dependencies": {
-    "@modern-js/runtime": "2.67.1",
+    "@modern-js/runtime": "3.1.5",
     "react": "^18.3.1",
     "react-dom": "^18.3.1"
   },
   "devDependencies": {
-    "@modern-js/app-tools": "0.0.0-next-20250414042203",
-    "@modern-js/tsconfig": "2.67.1",
+    "@modern-js/app-tools": "3.1.5",
+    "@modern-js/tsconfig": "3.1.5",
     "@biomejs/biome": "1.9.4",
     "typescript": "~5.7.3",
     "@types/jest": "~29.2.4",
     "@types/node": "~18.11.9",
-    "@types/react": "^18.3.11",
-    "@types/react-dom": "~18.3.1",
+    "@types/react": "18.3.27",
+    "@types/react-dom": "18.3.7",
     "lint-staged": "~15.4.0",
     "simple-git-hooks": "^2.11.1",
     "rimraf": "^6.0.1"
+  },
+  "resolutions": {
+    "@types/react": "18.3.27"
   }
 }

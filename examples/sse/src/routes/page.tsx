@@ -1,27 +1,45 @@
 import './index.css';
-import { useEffect, useRef, useState } from 'react';
-
-const eventSource = new EventSource('/sse');
-
-// Listen for the 'time-update' event (if specified on the server)
-eventSource.addEventListener('time-update', event => {
-  console.log('Received time update:', event.data);
-  console.log('Event ID:', event.lastEventId);
-});
-
-// Listen for generic 'message' events (if no specific event type is set)
-eventSource.onmessage = event => {
-  console.log('Received message:', event.data);
-};
-
-// Handle errors
-eventSource.onerror = error => {
-  console.error('EventSource failed:', error);
-  eventSource.close(); // Close the connection on error
-};
+import { useEffect, useState } from 'react';
 
 const Index = () => {
-  return <div>Hello World</div>;
+  const [messages, setMessages] = useState<string[]>([]);
+  const [status, setStatus] = useState<'connecting' | 'open' | 'closed'>(
+    'connecting',
+  );
+
+  useEffect(() => {
+    const eventSource = new EventSource('/sse');
+
+    eventSource.onopen = () => {
+      setStatus('open');
+    };
+
+    eventSource.addEventListener('time-update', event => {
+      setMessages(prev => [event.data, ...prev].slice(0, 5));
+    });
+
+    eventSource.onerror = error => {
+      console.error('EventSource failed:', error);
+      setStatus('closed');
+      eventSource.close();
+    };
+
+    return () => {
+      eventSource.close();
+    };
+  }, []);
+
+  return (
+    <main>
+      <h1>Modern.js SSE Demo</h1>
+      <p>Connection: {status}</p>
+      <ul>
+        {messages.map(message => (
+          <li key={message}>{message}</li>
+        ))}
+      </ul>
+    </main>
+  );
 };
 
 export default Index;

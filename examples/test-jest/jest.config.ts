@@ -10,7 +10,7 @@ const config: Config = {
   setupFilesAfterEnv: ['<rootDir>/jest.setup.ts'],
   testEnvironment: 'jsdom',
   transform: {
-    '^.+\\.(js|jsx|ts|tsx)$': 'babel-jest',
+    '^.+\\.(mjs|js|jsx|ts|tsx)$': 'babel-jest',
   },
   transformIgnorePatterns: [],
 };
