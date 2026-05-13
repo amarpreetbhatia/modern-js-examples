@@ -2,29 +2,57 @@ import {
   type MiddlewareHandler,
   defineServerConfig,
 } from '@modern-js/server-runtime';
-import { streamSSE } from 'hono/streaming';
 
-const requireAuthForApi: MiddlewareHandler = async (c, next) => {
-  let id = 0;
+const sseHandler: MiddlewareHandler = async c => {
   console.log('SSE Event');
-  return streamSSE(c, async stream => {
-    while (true) {
-      const message = `It is ${new Date().toISOString()}`;
-      await stream.writeSSE({
-        data: message,
-        event: 'time-update',
-        id: String(id++),
+
+  let id = 0;
+  const encoder = new TextEncoder();
+  let timer: ReturnType<typeof setInterval> | undefined;
+
+  const body = new ReadableStream({
+    start(controller) {
+      const send = () => {
+        const message = `It is ${new Date().toISOString()}`;
+        controller.enqueue(
+          encoder.encode(
+            `id: ${id++}\nevent: time-update\ndata: ${message}\n\n`,
+          ),
+        );
+      };
+
+      send();
+      timer = setInterval(send, 1000);
+
+      c.req.raw.signal.addEventListener('abort', () => {
+        if (timer) {
+          clearInterval(timer);
+        }
+        controller.close();
       });
-      await stream.sleep(1000);
-    }
+    },
+    cancel() {
+      if (timer) {
+        clearInterval(timer);
+      }
+    },
+  });
+
+  return new Response(body, {
+    headers: {
+      'Cache-Control': 'no-cache, no-transform',
+      Connection: 'keep-alive',
+      'Content-Type': 'text/event-stream',
+      'X-Accel-Buffering': 'no',
+    },
   });
 };
 
 export default defineServerConfig({
   middlewares: [
     {
-      name: 'require-auth-for-api',
-      handler: requireAuthForApi,
+      name: 'sse',
+      handler: sseHandler,
       path: '/sse',
     },
   ],

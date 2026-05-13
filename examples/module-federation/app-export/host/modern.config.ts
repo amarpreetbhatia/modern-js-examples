@@ -1,15 +1,13 @@
-import { appTools, defineConfig } from '@modern-js/app-tools';
-import { moduleFederationPlugin } from '@module-federation/modern-js';
+import { appTools, defineConfig } from "@modern-js/app-tools";
+import { moduleFederationPlugin } from "@module-federation/modern-js-v3";
 
 // https://modernjs.dev/en/configure/app/usage
 export default defineConfig({
-  runtime: {
-    router: true,
+  plugins: [appTools(), moduleFederationPlugin()],
+  resolve: {
+    alias: {
+      "react-router-dom": require.resolve("react-router-dom"),
+      "react-router": require.resolve("react-router"),
+    },
   },
-  plugins: [
-    appTools({
-      bundler: 'rspack', // Set to 'webpack' to enable webpack
-    }),
-    moduleFederationPlugin(),
-  ],
 });
