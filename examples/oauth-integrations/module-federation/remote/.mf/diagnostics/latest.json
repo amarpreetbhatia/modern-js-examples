@@ -1,10 +1,10 @@
 {
   "latestErrorEvent": {
     "code": "TYPE-001",
-    "message": "Failed to generate type declaration. Execute the below cmd to reproduce and fix the error. #TYPE-001\nargs: {\"cmd\":\"npx tsc --project /workspaces/modern-js-examples/examples/oauth-integrations/module-federation/remote/node_modules/.federation/tsconfig.d6726001d57cdd33c22918387527cb93.json\"}\nView the docs to see how to solve: https://module-federation.io/guide/troubleshooting/type#type-001",
+    "message": "Failed to generate type declaration. Execute the below cmd to reproduce and fix the error. #TYPE-001\nargs: {\"cmd\":\"npx tsc --project /workspaces/modern-js-examples/examples/oauth-integrations/module-federation/remote/node_modules/.federation/tsconfig.4aff470b2b84357e2bcbcb59e1534dc9.json\"}\nView the docs to see how to solve: https://module-federation.io/guide/troubleshooting/type#type-001",
     "args": {
-      "cmd": "npx tsc --project /workspaces/modern-js-examples/examples/oauth-integrations/module-federation/remote/node_modules/.federation/tsconfig.d6726001d57cdd33c22918387527cb93.json"
+      "cmd": "npx tsc --project /workspaces/modern-js-examples/examples/oauth-integrations/module-federation/remote/node_modules/.federation/tsconfig.4aff470b2b84357e2bcbcb59e1534dc9.json"
     },
-    "timestamp": 1780576271596
+    "timestamp": 1780576979348
   }
 }
