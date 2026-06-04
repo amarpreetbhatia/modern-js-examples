@@ -1,0 +1,7 @@
+examples/**/yarn.lock
+examples/**/pnpm-lock.yaml
+examples/**/package-lock.json
+examples/oauth-integrations/module-federation/remote/node_modules/*
+node_modules
+dist
+build
