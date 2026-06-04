@@ -6,7 +6,7 @@ export default createModuleFederationConfig({
     remote: 'remote@http://localhost:3051/static/mf-manifest.json',
   },
   shared: {
-    react: { singleton: true },
-    'react-dom': { singleton: true },
+    react: { singleton: true, strictVersion: false, requiredVersion: '18.2.0' },
+    'react-dom': { singleton: true, strictVersion: false, requiredVersion: '18.2.0' },
   },
 });

@@ -10,7 +10,7 @@ export default createModuleFederationConfig({
     './export-App': './src/export-App.tsx',
   },
   shared: {
-    react: { singleton: true },
-    'react-dom': { singleton: true },
+    react: { singleton: true, strictVersion: false, requiredVersion: '18.2.0' },
+    'react-dom': { singleton: true, strictVersion: false, requiredVersion: '18.2.0' },
   },
 });
